@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:frontend_aihl/webview_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -31,13 +31,11 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  void _launchURL() async {
-    final Uri url = Uri.parse(
-        'https://valid.aoc.cat/o/oauth2/auth?lang=ca&scope=autenticacio_usuari&redirect_uri=https://ovt.gencat.cat/carpetaciutadana360/AppJava/api/login&response_type=code&client_id=gsit.gencat.cat&approval_prompt=auto&state=inici_set-locale=ca_ES');
-
-    if (!await launchUrl(url)) {
-      throw Exception('No se pudo abrir $url');
-    }
+  void _openLoginWebView() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => const LoginWebView()),
+    );
   }
 
   @override
@@ -49,7 +47,7 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: Center(
         child: ElevatedButton(
-          onPressed: _launchURL,
+          onPressed: _openLoginWebView,
           child: const Text('Presióname'),
         ),
       ),
