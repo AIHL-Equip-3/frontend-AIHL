@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:frontend_aihl/chatScreen.dart';
 import 'package:frontend_aihl/webview_page.dart';
 
 void main() {
@@ -38,6 +39,13 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
+  void _openChatView() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => const ChatPage()),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,9 +54,18 @@ class _MyHomePageState extends State<MyHomePage> {
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
       ),
       body: Center(
-        child: ElevatedButton(
-          onPressed: _openLoginWebView,
-          child: const Text('Presióname'),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            ElevatedButton(
+              onPressed: _openLoginWebView,
+              child: const Text('Presióname'),
+            ),
+            ElevatedButton(
+              onPressed: _openChatView,
+              child: const Text('Ir al Chat'),
+            ),
+          ],
         ),
       ),
     );
